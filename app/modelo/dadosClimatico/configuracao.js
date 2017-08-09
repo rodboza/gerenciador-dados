@@ -11,6 +11,6 @@ module.exports = function(app){
       pressaoMax: { type: Number}
   }) ;
 
-  return app.database.dbDadosClimaticos.model('configuracao', configuracaoSchema);
+  return app.database.dbDadosClimaticos.model('Configuracao', configuracaoSchema);
 
 }

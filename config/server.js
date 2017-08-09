@@ -15,6 +15,7 @@ app.use(queryParser());
 
 app.env = require('./.env');
 app.mongoose = require('./mongoose');
+app.sendErrorsFromDB = require ('./erros');
 
 consign({cwd: 'app'})
   .include('database')
