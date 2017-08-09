@@ -3,7 +3,7 @@ const express = require('express');
 const allowCors = require('./cors');
 const queryParser = require('express-query-int');
 const consign = require('consign');
-require('./mongoose');
+
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -14,6 +14,7 @@ app.use(allowCors);
 app.use(queryParser());
 
 app.env = require('./.env');
+app.mongoose = require('./mongoose');
 
 consign({cwd: 'app'})
   .include('database')
