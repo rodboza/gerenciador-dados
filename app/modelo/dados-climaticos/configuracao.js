@@ -2,7 +2,7 @@
 module.exports = function(app){
 
   const configuracaoSchema = new app.mongoose.Schema({
-      intervalo: { type: Date, required: true },
+      intervalo: { type: Number },
       temperaturaMin: { type: Number },
       temperaturaMax: { type: Number },
       umidadeMin: { type: Number },
