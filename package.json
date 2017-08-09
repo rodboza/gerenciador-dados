@@ -1,0 +1,37 @@
+{
+  "name": "gerenciador-dados",
+  "version": "1.0.0",
+  "description": "Camada de abstracao dos dados",
+  "main": "loader.js",
+  "engines":{"node": "6.10.x","npm": "3.10.x"},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node loader.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rodboza/gerenciador-dados.git"
+  },
+  "keywords": [
+    "Azure",
+    "moogodb",
+    "nodejs"
+  ],
+  "author": "Rodboza",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rodboza/gerenciador-dados/issues"
+  },
+  "homepage": "https://github.com/rodboza/gerenciador-dados#readme",
+  "dependencies": {
+      "body-parser": "^1.15.2",
+      "express": "^4.14.0",
+      "express-query-int": "^1.0.1",
+      "lodash": "^4.17.2",
+      "mongoose": "^4.7.0",
+      "mongoose-paginate": "^5.0.3",
+      "node-restful": "^0.2.5",
+      "consign": "^0.1.2"
+  }
+
+}
