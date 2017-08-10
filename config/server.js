@@ -14,6 +14,7 @@ app.use(allowCors);
 app.use(queryParser());
 
 app.env = require('./.env');
+app.restful = require('node-restful');
 app.mongoose = require('./mongoose');
 app.sendErrorsFromDB = require ('./erros');
 
