@@ -7,11 +7,11 @@ module.exports = function(app) {
   
   configuracaoModel.methods(['get', 'post', 'put', 'delete']);
   configuracaoModel.updateOptions({new: true, runValidators: true});
-  configuracaoModel.register(app,'/configuracao');
+  configuracaoModel.register(app,'/dadosClimatico/configuracao');
   
   var api = app.api.dadosClimaticos.configuracao;
   
-  app.get("/configuracao/intervalo", api.getIntervalo);
+  app.get("/dadosClimatico/configuracao/intervalo", api.getIntervalo);
   
   
 };
