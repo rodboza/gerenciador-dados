@@ -8,6 +8,6 @@ module.exports = function(app){
       pressao: { type: Number}
   }) ;
 
-  return app.database.dbDadosClimaticos.model('Dados', dadosSchema);
+  return app.restful.mode('Dados', dadosSchema);
 
 }
