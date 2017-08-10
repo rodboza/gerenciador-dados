@@ -3,7 +3,7 @@
 module.exports = function(app) {
 
   var api = {};
-  configuracaoModel = app.database.dbDadosClimaticos.model('Configuracao');
+  configuracaoModel = app.model.dadosClimaticos.configuracao;
 
   api.getIntervalo = function(req, res, next) {
    
