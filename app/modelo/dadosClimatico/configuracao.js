@@ -11,6 +11,6 @@ module.exports = function(app){
       pressaoMax: { type: Number}
   }) ;
 
-  return app.database.dbDadosClimaticos.model('Configuracao', configuracaoSchema);
+  return app.restful.model('Configuracao', configuracaoSchema);
 
 }
