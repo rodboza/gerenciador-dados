@@ -14,7 +14,7 @@ module.exports = function(app) {
         const intervalo = configuracao.intervalo;
         return res.status(200).json(intervalo);
       } else {
-        retutn res.sendStatus(204);
+        return res.sendStatus(204);
       }
     })
   }
