@@ -1,5 +1,6 @@
 
-const mongoose = require('mongoose');
+const restful = require('node-restful');
+const mongoose = restful.mongoose;
 
 
 mongoose.Error.messages.general.required = "O atributo '{PATH}' é obrigatório.";
