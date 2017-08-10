@@ -1,7 +1,7 @@
 
 module.exports = function(app) {
 
-  var configuracaoModel = app.model.dadosClimatico.configuracao;
+  var configuracaoModel = app.modelo.dadosClimatico.configuracao;
   
   console.log(configuracaoModel);
   
