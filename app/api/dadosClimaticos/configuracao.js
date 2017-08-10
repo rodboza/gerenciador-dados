@@ -7,6 +7,18 @@ module.exports = function(app) {
 
   api.getDadosAtual = function(req, res, next) {
 
+    /*
+    for (var i = 0; i < 100; i++) {
+      const newDados = new Dados({ ocorrencia: Date.now(), temperatura: i, umidade: i, pressao:i });
+      newDados.save()
+      .then(
+        function (err){
+          return app.sendErrorsFromDB(res, err);
+        }
+      );
+    }
+*/
+
     Dados.findOne({$query:{}, $orderby:{ocorrencia:-1}} , (err, dados) => {
       if (err) {
         return app.sendErrorsFromDB(res, err);
@@ -19,18 +31,6 @@ module.exports = function(app) {
   }
 
 
-    api.getDados = function(req, res, next) {
-
-      Dados.find({} , (err, dados) => {
-        if (err) {
-          return app.sendErrorsFromDB(res, err);
-        } else if (dados) {
-          //const { ocorrencia, temperatura, umidade, pressao } = dados;
-          //return res.status(200).send("<h1>teste da chamada da API</h1><br> nome=" + ocorrencia) ;
-          return res.status(200).json(dados);
-        }
-      })
-    }
 
   api.registrarDados = function(req, res, next) {
     const ocorrencia = req.body.ocorrencia || Date.now()
