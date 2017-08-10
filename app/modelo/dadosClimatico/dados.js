@@ -8,6 +8,6 @@ module.exports = function(app){
       pressao: { type: Number}
   }) ;
 
-  return app.restful.mode('Dados', dadosSchema);
+  return app.restful.model('Dados', dadosSchema);
 
 }
