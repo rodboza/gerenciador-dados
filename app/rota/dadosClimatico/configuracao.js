@@ -1,12 +1,15 @@
-
+restful = require('node-restful');
 
 module.exports = function(app) {
 
-
-  var api = app.api.dadosClimaticos.dados;
-
-  app.get("/dadosClimatico/dados/atual", api.getDadosAtual);
-  app.post("/dadosClimatico/dados", api.registrarDados);
-
-
+  var configuracaoModel = app.database.dbDadosClimaticos.model('Configuacao');
+  configuracaoModel.methods(['get', 'post', 'put', 'delete']);
+  configuracaoModel configuracaoModel.updateOptions({new: true, runValidators: true});
+  configuracaoModel.register(app,'/configuracao');
+  
+  var api = app.api.dadosClimaticos.configuracao;
+  
+  app.get("/configuracao/intervalo", api.getIntervalo);
+  
+  
 };
