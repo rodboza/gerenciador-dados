@@ -1,4 +1,3 @@
-restful = require('node-restful');
 
 module.exports = function(app) {
 
