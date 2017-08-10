@@ -13,6 +13,8 @@ module.exports = function(app) {
       } else if (configuracao) {
         const intervalo = configuracao.intervalo;
         return res.status(200).json(intervalo);
+      } else {
+        retutn res.sendStatus(204);
       }
     })
   }
