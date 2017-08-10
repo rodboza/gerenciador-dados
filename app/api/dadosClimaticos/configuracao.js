@@ -3,49 +3,18 @@
 module.exports = function(app) {
 
   var api = {};
-  Dados = app.database.dbDadosClimaticos.model('Dados');
+  configuracaoModel = app.database.dbDadosClimaticos.model('Configuracao');
 
-  api.getDadosAtual = function(req, res, next) {
-
-    /*
-    for (var i = 0; i < 100; i++) {
-      const newDados = new Dados({ ocorrencia: Date.now(), temperatura: i, umidade: i, pressao:i });
-      newDados.save()
-      .then(
-        function (err){
-          return app.sendErrorsFromDB(res, err);
-        }
-      );
-    }
-*/
-
-    Dados.findOne({$query:{}, $orderby:{ocorrencia:-1}} , (err, dados) => {
+  api.getIntervalo = function(req, res, next) {
+   
+    configuracaoModel.findOne({} , (err, configuracao) => {
       if (err) {
         return app.sendErrorsFromDB(res, err);
-      } else if (dados) {
-        const { ocorrencia, temperatura, umidade, pressao } = dados;
-        //return res.status(200).send("<h1>teste da chamada da API</h1><br> nome=" + ocorrencia) ;
-        return res.status(200).json(dados);
+      } else if (configuracao) {
+        const intervalo = configuracao.intervalo;
+        return res.status(200).json(intervalo);
       }
     })
-  }
-
-
-
-  api.registrarDados = function(req, res, next) {
-    const ocorrencia = req.body.ocorrencia || Date.now()
-    const temperatura = req.body.temperatura || -999
-    const umidadeumidade = req.body.umidade || -999
-    const pressao = req.body.pressao || -999
-    const newDados = new Dados({ ocorrencia, temperatura, umidade, pressao });
-    //const newDados = new Dados({ ocorrencia: Date.now(), temperatura: i, umidade: i, pressao:i });
-    newDados.save()
-    .then(
-      function (err){
-        return app.sendErrorsFromDB(res, err);
-      }
-    );
-    return res.status(201).json(newDados);
   }
 
 
