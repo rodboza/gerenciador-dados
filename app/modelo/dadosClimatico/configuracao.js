@@ -11,6 +11,6 @@ module.exports = function(app){
       pressaoMax: { type: Number}
   }) ;
 
-  return app.restful.model('Configuracao', configuracaoSchema);
-
+   var teste = app.restful.model('Configuracao', configuracaoSchema);
+   return teste
 }

@@ -3,8 +3,7 @@
 module.exports = function(app) {
 
   var db = {};
-
-  db = app.mongoose.createConnection(app.env.connectString);
+  db = app.mongoose.connect(app.env.connectString);
 
   return db;
 
