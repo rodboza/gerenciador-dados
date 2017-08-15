@@ -1,16 +1,15 @@
 
 module.exports = function(app) {
 
-  console.log('>>>>>');
   var configuracaoModelo = app.modelo.dadosClimatico.configuracao;
 
   configuracaoModelo.methods(['get', 'post', 'put', 'delete']);
 
   configuracaoModelo
-    .after('post', app.sendErrorsFromDB)
-    .after('put', app.sendErrorsFromDB)
-    .after('get', app.sendErrorsFromDB)
-    .after('delete', app.sendErrorsFromDB);
+    .after('post', app.erros.sendErrorsOrNext)
+    .after('put', app.erros.sendErrorsOrNext)
+    .after('get', app.erros.sendErrorsOrNext)
+    .after('delete', app.erros.sendErrorsOrNext);
 
   configuracaoModelo.updateOptions({new: true, runValidators: true});
 
@@ -20,6 +19,5 @@ module.exports = function(app) {
 
   app.get("/dadosClimatico/configuracao/intervalo", api.getIntervalo);
 
-  console.log('>>>>>');
 
 };

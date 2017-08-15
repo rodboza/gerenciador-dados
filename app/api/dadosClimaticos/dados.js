@@ -9,11 +9,11 @@ module.exports = function(app) {
 
     dadosModelo.findOne({$query:{}, $orderby:{ocorrencia:-1}} , (err, dados) => {
       if (err) {
-        return app.sendErrorsFromDB(res, err);
+        return app.erros.sendErrorsFromDB(res, err);
       } else if (dados) {
+        console.log("dados");
         const { ocorrencia, temperatura, umidade, pressao } = dados;
-        //return res.status(200).send("<h1>teste da chamada da API</h1><br> nome=" + ocorrencia) ;
-        return res.status(200).json(dados);
+        res.status(200).json(dados);
       }
     })
   }
@@ -23,7 +23,7 @@ module.exports = function(app) {
 
       dadosModelo.find({} , (err, dados) => {
         if (err) {
-          return app.sendErrorsFromDB(res, err);
+          return app.erros.sendErrorsFromDB(res, err);
         } else if (dados) {
           //const { ocorrencia, temperatura, umidade, pressao } = dados;
           //return res.status(200).send("<h1>teste da chamada da API</h1><br> nome=" + ocorrencia) ;
@@ -42,7 +42,7 @@ module.exports = function(app) {
     newDados.save()
     .then(
       function (err){
-        return app.sendErrorsFromDB(res, err);
+        return app.erros.sendErrorsFromDB(res, err);
       }
     );
     return res.status(201).json(newDados);

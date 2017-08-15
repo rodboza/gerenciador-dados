@@ -12,5 +12,5 @@ module.exports = function(app){
   }) ;
 
    var teste = app.restful.model('Configuracao', configuracaoSchema);
-   return teste
+   return teste;
 }

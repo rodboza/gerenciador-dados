@@ -1,3 +1,5 @@
+console.log("inicio server");
+
 const bodyParser = require('body-parser');
 const express = require('express');
 const allowCors = require('./cors');
@@ -16,7 +18,7 @@ app.use(queryParser());
 app.env = require('./.env');
 app.restful = require('node-restful');
 app.mongoose = require('./mongoose');
-app.sendErrorsFromDB = require ('./erros');
+app.erros = require ('./erros') (app) ;
 
 consign({cwd: 'app'})
   .include('database')
@@ -31,3 +33,5 @@ app.listen(port, function() {
 })
 
 module.exports = app;
+
+console.log("fim server");
