@@ -1,6 +1,7 @@
 
 module.exports = function(app) {
 
+
   var configuracaoModelo = app.modelo.dadosClimatico.configuracao;
 
   configuracaoModelo.methods(['get', 'post', 'put', 'delete']);

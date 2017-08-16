@@ -1,7 +1,7 @@
 
 module.exports = function(app){
 
-  const configuracaoSchema = new app.mongoose.Schema({
+  const configuracaoSchema = new app.database.dbDadosClimaticos.base.Schema({
       intervalo: { type: Number },
       temperaturaMin: { type: Number },
       temperaturaMax: { type: Number },
