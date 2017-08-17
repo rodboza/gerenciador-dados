@@ -1,24 +1,19 @@
+var express    = require('express');
 
 module.exports = function(app) {
-
-
-  var configuracaoModelo = app.modelo.dadosClimatico.configuracao;
-
-  configuracaoModelo.methods(['get', 'post', 'put', 'delete']);
-
-  configuracaoModelo
-    .after('post', app.erros.sendErrorsOrNext)
-    .after('put', app.erros.sendErrorsOrNext)
-    .after('get', app.erros.sendErrorsOrNext)
-    .after('delete', app.erros.sendErrorsOrNext);
-
-  configuracaoModelo.updateOptions({new: true, runValidators: true});
-
-  configuracaoModelo.register(app,'/dadosClimatico/configuracao');
-
+  
+  var router = express.Router();
   var api = app.api.dadosClimaticos.configuracao;
+  
+  router 
+    .get('/intervalo', api.getIntervalo)
+    .get('/', api.getAll)
+    .get('/:id', api.getOne)
+    .post('/', api.post)
+    .put('/:id', api.put)
+    .delete('/:id', api.delete)
+  ;
 
-  app.get("/dadosClimatico/configuracao/intervalo", api.getIntervalo);
-
+  app.use('/dadosClimatico/configuracao', router);
 
 };
