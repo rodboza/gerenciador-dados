@@ -8,12 +8,5 @@ module.exports = function(app){
       pressao: { type: Number}
   }) ;
 
-  return app.restful.model('Dados', dadosSchema);
-//console.log(">>>>>");
-  //console.log(app.restful.model('Dados', dadosSchema).routes);
-  //console.log("<<<<<");
-  //console.log(app.database.dbDadosClimaticos.base.model('Dados', dadosSchema));
-
   return app.database.dbDadosClimaticos.base.model('Dados', dadosSchema);
-
 }
