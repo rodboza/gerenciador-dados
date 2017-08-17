@@ -8,46 +8,68 @@ module.exports = function(app) {
   api.getDadosAtual = function(req, res, next) {
 
     dadosModelo.findOne({$query:{}, $orderby:{ocorrencia:-1}} , (err, dados) => {
-      if (err) {
+      if (err) 
         return app.erros.sendErrorsFromDB(res, err);
-      } else if (dados) {
+      
+      if (dados) {
         console.log("dados");
         const { ocorrencia, temperatura, umidade, pressao } = dados;
         res.status(200).json(dados);
       }
+
+      return res.sendStatus(204);
+
     })
   }
 
 
-    api.getDados = function(req, res, next) {
+    api.getAll = function(req, res, next) {
 
       dadosModelo.find({} , (err, dados) => {
-        if (err) {
+        if (err) 
           return app.erros.sendErrorsFromDB(res, err);
-        } else if (dados) {
-          //const { ocorrencia, temperatura, umidade, pressao } = dados;
-          //return res.status(200).send("<h1>teste da chamada da API</h1><br> nome=" + ocorrencia) ;
+        
+        if (dados)
           return res.status(200).json(dados);
-        }
+        
+        return res.sendStatus(204);
+        
       })
     }
 
-  api.registrarDados = function(req, res, next) {
+  //INICIO FUNCAO
+  api.getOne = function(req, res, next) {
+  }
+  //FIM FUNCAO
+  
+  api.post = function(req, res, next) {
+    
     const ocorrencia = req.body.ocorrencia || Date.now()
     const temperatura = req.body.temperatura || -999
     const umidadeumidade = req.body.umidade || -999
     const pressao = req.body.pressao || -999
+    
     const newDados = new dadosModelo({ ocorrencia, temperatura, umidade, pressao });
-    //const newDados = new Dados({ ocorrencia: Date.now(), temperatura: i, umidade: i, pressao:i });
+
     newDados.save()
     .then(
       function (err){
         return app.erros.sendErrorsFromDB(res, err);
       }
     );
+    
     return res.status(201).json(newDados);
   }
 
+  //INICIO FUNCAO
+  api.put = function(req, res, next) {
+  }
+  //FIM FUNCAO
+
+  //INICIO FUNCAO
+  api.put = function(req, res, next) {
+  }
+  //FIM FUNCAO
 
   return api;
 };
