@@ -2,7 +2,7 @@
 repositório para gerenciamento de dados com percistencia no moogdb
 
 
-<h2>Para adcionar um novo projeto<h2>
+<h2>Para adcionar um novo projeto</h2>
 
 Para adcionar o acesso a dados de um novo projeto basta seguir os seguintes passos:
 <ul>
