@@ -1,14 +1,5 @@
 console.log("inicio dbAuth");
 
-/*
-module.exports = function(app) {
-  var db = {};
-  db = app.mongoose.connect(app.env.connectString.dbAuth, {useMongoClient:true});
-  return db;
-}
-*/
-
-
 module.exports = function(app) {
   var db = {};
   var mong = new app.mongoose();
