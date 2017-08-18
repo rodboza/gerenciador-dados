@@ -9,10 +9,10 @@ module.exports = function(app) {
   router
     .get('/atual', api.getDadosAtual)
     .get('/', api.getAll)
-    .get('/:id', api.getOne)
     .post('/', api.post)
-    .put('/:id', api.put)
-    .delete('/:id', api.delete)
+    .get('/:id', api.getId, api.getOne)
+    .put('/:id', api.getId, api.put)
+    .delete('/:id', api.getId, api.delete)
   ;
 
   app.use('/dadosClimatico/dados', router);
