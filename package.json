@@ -9,7 +9,7 @@
   },
   "scripts": {
     "dev": "nodemon",
-    "test": "mocha --watch",
+    "test": "mocha --watch --reporter spec --timeout 10000",
     "start": "node loader.js"
   },
   "repository": {
@@ -37,6 +37,8 @@
     "mongoose-paginate": "^5.0.3"
   },
   "devDependencies": {
+    "chai": "^4.1.1",
+    "chai-http": "^3.0.0",
     "mocha": "^3.5.0",
     "nodemon": "^1.11.0"
   }

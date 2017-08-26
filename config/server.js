@@ -8,7 +8,6 @@ const consign = require('consign');
 
 
 const app = express();
-const port = process.env.PORT || 3000;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -25,11 +24,6 @@ consign({cwd: 'app'})
   .then('api')
   .then('rota')
   .into(app);
-
-
-app.listen(port, function() {
-  console.log(`BACKEND is running on port ${port}.`);
-})
 
 module.exports = app;
 
