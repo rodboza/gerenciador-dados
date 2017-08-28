@@ -20,10 +20,10 @@ module.exports = function(app) {
   //INICIO FUNCAO
   api.getId = function(req, res, next) {
     let BSON = app.database.dbDadosClimaticos.base.BSONPure;
+    console.log("bbbbbbbbbbbbbbbbbbbbbb");
+    console.log(BSON);
+    console.log("bbbbbbbbbbbbbbbbbbbbbb");
     let query =  {'_id': new BSON.ObjectID(req.params.id)} ;
-    console.log("bbbbbbbbbbbbbbbbbbbbbb");
-    console.log(query);
-    console.log("bbbbbbbbbbbbbbbbbbbbbb");
     configuracaoModelo.findById( query , 
       (err, dados) => {
         if (err) 
