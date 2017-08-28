@@ -34,7 +34,8 @@
     "express-query-int": "^1.0.1",
     "lodash": "^4.17.2",
     "mongoose": "^4.7.0",
-    "mongoose-paginate": "^5.0.3"
+    "mongoose-paginate": "^5.0.3",
+    "bson": "^0.4.20"
   },
   "devDependencies": {
     "chai": "^4.1.1",
