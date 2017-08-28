@@ -20,12 +20,15 @@ module.exports = function(app) {
   //INICIO FUNCAO
   api.getId = function(req, res, next) {
     let BSON = require('bson').BSONPure;
-    console.log("bbbbbbbbbbbbbbbbbbbbbb");
-    console.log(BSON);
-    console.log("bbbbbbbbbbbbbbbbbbbbbb");
     let query =  {'_id': new BSON.ObjectID(req.params.id)} ;
+    console.log("bbbbbbbbbbbbbbbbbbbbbb");
+    console.log(query);
+    console.log("bbbbbbbbbbbbbbbbbbbbbb");
     configuracaoModelo.findById( query , 
       (err, dados) => {
+        console.log("ccccccccccccccccccccccccc");
+        console.log(err);
+        console.log("ccccccccccccccccccccccccc");
         if (err) 
           return app.erros.sendErrorsFromDB(res, err);
         if (!dados)
