@@ -21,10 +21,13 @@ module.exports = function(app) {
   
   //INICIO FUNCAO
   api.getId = function(req, res, next) {
-    configuracaoModelo.findById(req.params.id)
+    configuracaoModelo.findById('59a4539865011629048b3eb4')
       .exec()
       .then(
         (dados) => {
+          console.log('bbbbbbbbbbbb');
+          console.log(dados);
+          console.log('bbbbbbbbbbbb');
           if (!dados)
             return res.sendStatus(404);
           req.dados = dados;
