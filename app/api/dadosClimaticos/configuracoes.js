@@ -9,7 +9,7 @@ module.exports = function(app) {
   api.getNomeValor = function(req, res, next) {
     configuracaoModelo.findOne( {nome:req.params.nome} , (err, configuracao) => {
       if (err)
-        return app.sendErrorsFromDB(res, err);
+        return app.erros.sendErrorsFromDB(res, err);
       if (!configuracao)
         return res.sendStatus(404);
       return res.status(200).json(configuracao.valor);
@@ -21,7 +21,7 @@ module.exports = function(app) {
   api.getId = function(req, res, next) {
     configuracaoModelo.findOne( {_id:req.params.id} , (err, configuracao) => {
       if (err)
-        return app.sendErrorsFromDB(res, err);
+        return app.erros.sendErrorsFromDB(res, err);
       if (!configuracao)
         return res.sendStatus(404);
       req.configuracao = configuracao;
@@ -34,7 +34,7 @@ module.exports = function(app) {
   api.getAll = function(req, res, next) {
     configuracaoModelo.find({}, (err, configuracao) => {
       if (err)
-        return app.sendErrorsFromDB(res, err);
+        return app.erros.sendErrorsFromDB(res, err);
       if (!configuracao)
         return res.sendStatus(404);
       return res.status(200).json(configuracao);
@@ -56,7 +56,7 @@ module.exports = function(app) {
     config.save(
       (err) => {
         if (err) 
-          return app.sendErrorsFromDB(res, err);
+          return app.erros.sendErrorsFromDB(res, err);
       }
     );
     return res.status(201).json(config);
@@ -70,7 +70,7 @@ module.exports = function(app) {
     config.save(
       (err) => {
         if (err) 
-          return app.sendErrorsFromDB(res, err);
+          return app.erros.sendErrorsFromDB(res, err);
       }
     );
     return res.status(201).json(config);
@@ -83,7 +83,7 @@ module.exports = function(app) {
         {_id:req.configuracao._id}, 
         (err, bear) => {
             if (err)
-              return app.sendErrorsFromDB(res, err);
+              return app.erros.sendErrorsFromDB(res, err);
         }
     );
     return res.sendStatus(200);

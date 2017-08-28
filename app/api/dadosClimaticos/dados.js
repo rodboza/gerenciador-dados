@@ -19,10 +19,11 @@ module.exports = function(app) {
 
   //INICIO FUNCAO
   api.getId = function(req, res, next) {
-    configuracaoModelo.findOne( {_id:req.params.id} , 
+    
+    configuracaoModelo.findById( req.params.id , 
       (err, dados) => {
-        if (err)
-          return app.sendErrorsFromDB(res, err);
+        if (err) 
+          return app.erros.sendErrorsFromDB(res, err);
         if (!dados)
           return res.sendStatus(404);
         req.dados = dados;
@@ -50,11 +51,11 @@ module.exports = function(app) {
 
   api.post = function(req, res, next) {
     var dados = new dadosModelo();
-    dados.ocorrencia = req.body.ocorrencia || Date.now()
-    dados.temperatura = req.body.temperatura || -999
-    dados.umidadeumidade = req.body.umidade || -999
-    dados.pressao = req.body.pressao || -999
-//    const newDados = new dadosModelo({ ocorrencia, temperatura, umidade, pressao });
+    dados.ocorrencia = req.body.ocorrencia || Date.now();
+    dados.temperatura = req.body.temperatura || -999;
+    dados.umidade = req.body.umidade || -999;
+    dados.pressao = req.body.pressao || -999;
+    
     dados.save()
       .then( 
         (err) => {
@@ -82,11 +83,14 @@ module.exports = function(app) {
 
   //INICIO FUNCAO
   api.delete = function(req, res, next) {
+    
+    console.log('>>>>>>>>>>>>');// + req.params.id);
+
     dadosModelo.remove(
-        {_id:req.dados._id}, 
+        {_id: req.params.id}, 
         (err, dados) => {
             if (err)
-              return app.sendErrorsFromDB(res, err);
+              return app.erros.sendErrorsFromDB(res, err);
         }
     );
     return res.sendStatus(200);
