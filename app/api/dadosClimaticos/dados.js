@@ -19,7 +19,7 @@ module.exports = function(app) {
 
   //INICIO FUNCAO
   api.getId = function(req, res, next) {
-    let BSON = app.database.dbDadosClimaticos.base.BSONPure;
+    let BSON = require('bson').BSONPure;
     console.log("bbbbbbbbbbbbbbbbbbbbbb");
     console.log(BSON);
     console.log("bbbbbbbbbbbbbbbbbbbbbb");
