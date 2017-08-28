@@ -17,28 +17,23 @@ module.exports = function(app) {
     ).sort({ocorrencia:-1});
   }
 
+   
+  
   //INICIO FUNCAO
   api.getId = function(req, res, next) {
-    let BSON = require('bson').BSONPure;
-    let query =  {'_id': new BSON.ObjectID(req.params.id)} ;
-    console.log("bbbbbbbbbbbbbbbbbbbbbb");
-    console.log(query);
-    console.log("bbbbbbbbbbbbbbbbbbbbbb");
-    configuracaoModelo.findById( query , 
-      (err, dados) => {
-        console.log("ccccccccccccccccccccccccc");
-        console.log(err);
-        console.log("ccccccccccccccccccccccccc");
-        if (err) 
+    configuracaoModelo.findById(req.params.id)
+      .exec()
+      .then(
+        (dados) => {
+          if (!dados)
+            return res.sendStatus(404);
+          req.dados = dados;
+          next();            
+        })
+      .catch (
+        (err) => {
           return app.erros.sendErrorsFromDB(res, err);
-        if (!dados)
-          return res.sendStatus(404);
-        console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-        console.log(dados._id);
-        req.dados = dados;
-        next();
-      }
-    );
+        });
   }
   //FIM FUNCAO
   
