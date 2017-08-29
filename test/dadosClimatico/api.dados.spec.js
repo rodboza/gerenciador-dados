@@ -72,6 +72,13 @@ api.DeleteOneRecord  = function (done, chai, app) {
             done(err);
         });
 
+        chai.request(app)
+        .get(app.teste.url +'/'+_id)
+        .end((err, res) => {
+            res.should.be.status(404);
+            done(err);
+        });        
+
     });
 
 } 
