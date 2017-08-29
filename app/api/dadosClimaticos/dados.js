@@ -87,9 +87,9 @@ module.exports = function(app) {
 
   //INICIO FUNCAO
   api.delete = function(req, res, next) {
-    
+    var dados = req.dados;
     dadosModelo.remove(
-        {_id: req.params.id}, 
+        {_id: dados._id}, 
         (err, dados) => {
             if (err)
               return app.erros.sendErrorsFromDB(res, err);
