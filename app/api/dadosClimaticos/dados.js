@@ -25,9 +25,6 @@ module.exports = function(app) {
       .exec()
       .then(
         (dados) => {
-          console.log('bbbbbbbbbbbb');
-          console.log(dados);
-          console.log('bbbbbbbbbbbb');
           if (!dados)
             return res.sendStatus(404);
           req.dados = dados;
@@ -91,8 +88,6 @@ module.exports = function(app) {
   //INICIO FUNCAO
   api.delete = function(req, res, next) {
     
-    console.log('>>>>>>>>>>>>');// + req.params.id);
-
     dadosModelo.remove(
         {_id: req.params.id}, 
         (err, dados) => {
