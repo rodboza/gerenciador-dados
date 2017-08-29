@@ -65,10 +65,6 @@ api.DeleteOneRecord  = function (done, chai, app) {
         res.body.should.be.a('object');
         _id = res.body._id;
 
-        console.log("aaaaaaaaaaaaaaaaaaaaaaa");
-        console.log(res.body._id);
-        console.log("aaaaaaaaaaaaaaaaaaaaaaa");
-
         chai.request(app)
         .delete(app.teste.url +'/'+_id)
         .end((err, res) => {
