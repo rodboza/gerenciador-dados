@@ -21,8 +21,9 @@ module.exports = function(app) {
   
   //INICIO FUNCAO
   api.getId = function(req, res, next) {
+    var obj = new require('Mongoose').Types.ObjectId('59a4539865011629048b3eb4');
     configuracaoModelo.find({})
-      .where('_id').eq('59a4539865011629048b3eb4')
+      .where('_id').eq(obj)
       .exec()
       .then(
         (dados) => {
