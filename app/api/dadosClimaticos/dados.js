@@ -21,7 +21,7 @@ module.exports = function(app) {
   
   //INICIO FUNCAO
   api.getId = function(req, res, next) {
-    dadosModelo.findById(res.param.id)
+    dadosModelo.findById(res.params.id)
       .exec()
       .then(
         (dados) => {
