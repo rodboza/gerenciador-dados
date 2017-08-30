@@ -2,7 +2,7 @@
 
 module.exports = function(app) {
 
-  var api = {};
+  let api = {};
   configuracaoModelo = app.modelo.dadosClimatico.configuracoes;
 
   //INICIO FUNCAO
@@ -50,7 +50,7 @@ module.exports = function(app) {
 
   //INICIO FUNCAO
   api.post = function(req, res, next) {
-    var config = new configuracaoModelo();
+    let config = new configuracaoModelo();
     config.nome = req.body.nome;
     config.valor = req.body.valor;
     config.save(
@@ -65,7 +65,7 @@ module.exports = function(app) {
 
   //INICIO FUNCAO
   api.put = function(req, res, next) {
-    var config = req.configuracao;
+    let config = req.configuracao;
     config.valor = req.body.valor;
     config.save(
       (err) => {

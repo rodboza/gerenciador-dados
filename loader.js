@@ -1,7 +1,7 @@
 
 
-const server = require('./config/server');
-const port = process.env.PORT || 3000;
+let server = require('./config/server');
+let port = process.env.PORT || 3000;
 
 
 server.listen(port, function() {

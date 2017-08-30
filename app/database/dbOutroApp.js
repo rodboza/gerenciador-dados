@@ -1,8 +1,8 @@
 console.log("inicio dbAuth");
 
 module.exports = function(app) {
-  var db = {};
-  var mong = new app.mongoose();
+  let db = {};
+  let mong = new app.mongoose();
   db = mong.connect(app.env.connectString.dbAuth, {useMongoClient:true});
 
   mong.Error.messages.general.required = "O atributo '{PATH}' é obrigatório.";

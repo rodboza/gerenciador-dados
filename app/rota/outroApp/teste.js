@@ -1,10 +1,10 @@
-var express    = require('express');
+let express    = require('express');
 
 
 module.exports = function(app) {
 
-  var router = express.Router();
-  var api = app.api.outroApp.testes;
+  let router = express.Router();
+  let api = app.api.outroApp.testes;
 
   router
     .get('/', api.getAll)

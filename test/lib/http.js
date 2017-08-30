@@ -5,7 +5,7 @@
  * Module dependencies.
  */
 
-var EventEmitter = require('events').EventEmitter
+let EventEmitter = require('events').EventEmitter
   , should = require('should')
   , methods = ['get','post','put','delete','head']
   , http = require('http')
@@ -29,7 +29,7 @@ exports.request = function() {
 }
 
 function Request() {
-  var self = this;
+  let self = this;
   this.data = [];
   this.header = {};
 }
@@ -77,7 +77,7 @@ Request.prototype.expect = function(body, fn){
 
 Request.prototype.end = function(fn){
 
-  var req = http.request({
+  let req = http.request({
       method: this.method
     , port: addr.port
     , host: addr.address
@@ -90,7 +90,7 @@ Request.prototype.end = function(fn){
   });
   
   req.on('response', function(res){
-    var buf = '';
+    let buf = '';
     res.setEncoding('utf8');
     res.on('data', function(chunk){ buf += chunk });
     res.on('end', function(){

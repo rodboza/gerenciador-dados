@@ -1,7 +1,7 @@
 
 module.exports = function(app){
 
-  const dadosSchema = new app.database.dbDadosClimaticos.base.Schema({
+  let dadosSchema = new app.database.dbDadosClimaticos.base.Schema({
       ocorrencia: { type: Date },
       temperatura: { type: Number },
       umidade: { type: Number },

@@ -1,22 +1,31 @@
 
-var api = {};
 
-api.DoBefore = function  (done, chai, app) {
-    app.teste.server = app.listen(app.teste.port, function() {
-        console.log(`      >>>Test is running on port ${app.teste.port}.`);
+let dadosTester = {};
+
+let _app = {};
+let _chai = {};
+let _teste = {};
+
+dadosTester.SetApp = (app) => _app = app;
+dadosTester.SetChai = (chai) => _chai = chai;
+dadosTester.SetTeste = (teste) => _teste = teste;
+
+dadosTester.DoBefore = function  (done) {
+    _teste.server = _app.listen(_teste.port, function() {
+        console.log(`      >>>Test is running on port ${_teste.port}.`);
         done();
     });
 }
 
-api.DoAfter = function  (done, chai, app) {
-    app.teste.server.close();
+dadosTester.DoAfter = function  (done) {
+    _teste.server.close();
     console.log('      >>>Test is closed!');
     done();
 }
 
-api.DoApiGet = function  (done, chai, app) {
-    chai.request(app)
-    .get(app.teste.url)
+dadosTester.DoGetRecords = function  (done) {
+    _chai.request(_app)
+    .get(_teste.url)
     .end((err, res) => {
         res.should.be.status(200);
         res.body.should.be.a('array');
@@ -24,10 +33,10 @@ api.DoApiGet = function  (done, chai, app) {
     });
 }
 
-api.PostOneRecord = function (done, chai, app) {
-    let dados = app.teste.dadosEx;
-    chai.request(app)
-        .post(app.teste.url)
+dadosTester.PostOneRecord = function (done) {
+    let dados = _teste.dadosEx;
+    _chai.request(_app)
+        .post(_teste.url)
         .send(dados)
         .end((err, res) => {
             res.should.be.status(201);
@@ -40,10 +49,10 @@ api.PostOneRecord = function (done, chai, app) {
         });            
 }
 
-api.GetLastRecord = function (done, chai, app) {
-    let dados = app.teste.dadosEx;
-    chai.request(app)
-    .get(app.teste.url+'/atual')
+dadosTester.GetLastRecord = function (done) {
+    let dados = _teste.dadosEx;
+    _chai.request(_app)
+    .get(_teste.url+'/atual')
     .end((err, res) => {
         res.should.be.status(200);
         res.body.should.be.a('object');
@@ -55,33 +64,29 @@ api.GetLastRecord = function (done, chai, app) {
     });
 }
 
-api.DeleteOneRecord  = function (done, chai, app) {
-    var _id;
+dadosTester.DeleteOneRecord  = function (done) {
+    let _id;
 
-    chai.request(app)
-    .get(app.teste.url+'/atual')
+    _chai.request(_app)
+    .get(_teste.url+'/atual')
     .end((err, res) => {
         res.should.be.status(200);
         res.body.should.be.a('object');
         _id = res.body._id;
 
-        chai.request(app)
-        .delete(app.teste.url +'/'+_id)
+        _chai.request(_app)
+        .delete(_teste.url +'/'+_id)
         .end((err, res) => {
             res.should.be.status(200);
-            done(err);
+            done();
         });
 
-        chai.request(app)
-        .get(app.teste.url +'/'+_id)
-        .end((err, res) => {
-            res.should.be.status(404);
-            done(err);
-        });        
-
     });
-
 } 
 
-module.exports = api;
+dadosTester.PutOneRecord = () => {
+
+}
+
+module.exports = dadosTester;
  

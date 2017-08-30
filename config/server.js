@@ -1,13 +1,13 @@
 console.log("inicio server");
 
-const bodyParser = require('body-parser');
-const express = require('express');
-const allowCors = require('./cors');
-const queryParser = require('express-query-int');
-const consign = require('consign');
+let bodyParser = require('body-parser');
+let express = require('express');
+let allowCors = require('./cors');
+let queryParser = require('express-query-int');
+let consign = require('consign');
 
 
-const app = express();
+let app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

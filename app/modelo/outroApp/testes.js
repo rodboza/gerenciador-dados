@@ -1,7 +1,7 @@
 
 module.exports = function(app){
 
-  const testesSchema = new app.database.dbOutroApp.base.Schema({
+  let testesSchema = new app.database.dbOutroApp.base.Schema({
       valor: { type: String }
   }) ;
 

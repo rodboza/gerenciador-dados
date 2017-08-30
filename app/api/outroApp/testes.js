@@ -1,6 +1,6 @@
 module.exports = function(app) {
 
-  var api = {};
+  let api = {};
   modelo = app.modelo.outroApp.testes
 
     api.getAll = function(req, res, next) {

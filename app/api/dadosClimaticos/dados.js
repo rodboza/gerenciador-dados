@@ -2,7 +2,7 @@
 
 module.exports = function(app) {
 
-  var api = {};
+  let api = {};
   dadosModelo = app.modelo.dadosClimatico.dados
 
   api.getDadosAtual = function(req, res, next) {
@@ -54,7 +54,7 @@ module.exports = function(app) {
   //FIM FUNCAO
 
   api.post = function(req, res, next) {
-    var dados = new dadosModelo();
+    let dados = new dadosModelo();
     dados.ocorrencia = req.body.ocorrencia || Date.now();
     dados.temperatura = req.body.temperatura || -999;
     dados.umidade = req.body.umidade || -999;
@@ -71,7 +71,7 @@ module.exports = function(app) {
 
   //INICIO FUNCAO
   api.put = function(req, res, next) {
-    var dados = req.dados;
+    let dados = req.dados;
     dados.ocorrencia = req.body.ocorrencia || dados.ocorrencia
     dados.temperatura = req.body.temperatura || dados.temperatura
     dados.umidadeumidade = req.body.umidade || dados.umidadeumidade
@@ -87,7 +87,7 @@ module.exports = function(app) {
 
   //INICIO FUNCAO
   api.delete = function(req, res, next) {
-    var dados = req.dados;
+    let dados = req.dados;
     dadosModelo.remove(
         {_id: dados._id}, 
         (err, dados) => {

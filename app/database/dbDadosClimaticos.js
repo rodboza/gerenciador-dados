@@ -1,8 +1,8 @@
 console.log("inicio dbDadosClimaticos");
 
 module.exports = function(app) {
-  var db = {};
-  var mong = new app.mongoose();
+  let db = {};
+  let mong = new app.mongoose();
   db = mong.connect(app.env.connectString.dbClimatico, {useMongoClient:true});
 
   mong.Error.messages.general.required = "O atributo '{PATH}' é obrigatório.";

@@ -1,9 +1,9 @@
-var express    = require('express');
+let express    = require('express');
 
 module.exports = function(app) {
 
-  var router = express.Router();
-  var api = app.api.dadosClimaticos.configuracoes;
+  let router = express.Router();
+  let api = app.api.dadosClimaticos.configuracoes;
 
   router
     .get('/:nome/valor', api.getNomeValor)

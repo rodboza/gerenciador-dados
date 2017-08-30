@@ -1,7 +1,7 @@
 
 module.exports = function(app){
 
-  const configuracoesSchema = new app.database.dbDadosClimaticos.base.Schema({
+  let configuracoesSchema = new app.database.dbDadosClimaticos.base.Schema({
       nome: { type: String },
       valor: { type: String }
   }) ;
