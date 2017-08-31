@@ -10,7 +10,6 @@ module.exports = function(app) {
     .get('/', api.getAll)
     .post('/', api.post)
     .get('/:nome', api.getName, api.getOne)
-    //.put('/:nome/:valor', api.getName, api.put)
     .put('/:nome', api.getName, api.put)
     .delete('/:nome', api.getName, api.delete)
   ;
