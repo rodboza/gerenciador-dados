@@ -9,7 +9,7 @@
   },
   "scripts": {
     "dev": "nodemon",
-    "test": "mocha --watch --reporter spec --timeout 10000",
+    "test": "mocha --watch --reporter spec --timeout 15000",
     "start": "node loader.js"
   },
   "repository": {

@@ -9,9 +9,10 @@ module.exports = function(app) {
     .get('/:nome/valor', api.getNomeValor)
     .get('/', api.getAll)
     .post('/', api.post)
-    .get('/:id', api.getId, api.getOne)
-    .put('/:id', api.getId, api.put)
-    .delete('/:id', api.getId, api.delete)
+    .get('/:nome', api.getName, api.getOne)
+    //.put('/:nome/:valor', api.getName, api.put)
+    .put('/:nome', api.getName, api.put)
+    .delete('/:nome', api.getName, api.delete)
   ;
 
   app.use('/dadosClimatico/configuracoes', router);

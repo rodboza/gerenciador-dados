@@ -22,7 +22,6 @@ ConfigTst.Setup = ( serverCrt, chai ) => {
 } 
 
 ConfigTst.PostOneRecord = (done) => {
-    console.log(_url)
     _chai.request(_app)
     .post( _url )
     .send(_configEx)
@@ -34,7 +33,87 @@ ConfigTst.PostOneRecord = (done) => {
         done();            
     });            
 }
+ConfigTst.PostDuplicateRecord = (done) => {
+    _chai.request(_app)
+    .post( _url )
+    .send(_configEx)
+    .end((err, res) => {
+        res.should.be.status(400);
+        res.body.should.be.a('object');
+        done();            
+    });            
+}
 
+
+ConfigTst.GetAllRecords = (done) => { 
+    _chai.request(_app)
+    .get( _url )
+    .end((err, res) => {
+        res.should.be.status(200);
+        res.body.should.be.a('array');
+        done();
+    });
+}
+
+ConfigTst.GetValueByName = (done) => { 
+    _chai.request(_app)
+    .get( _url + '/' + _configEx.nome + '/valor' )
+    .end((err, res) => {
+        res.should.be.status(200);
+        res.body.should.be.eql(_configEx.valor);
+        done();
+    });
+}
+
+ConfigTst.GetRecordByName = (done) => { 
+    _chai.request(_app)
+    .get( _url + '/' + _configEx.nome )
+    .end((err, res) => {
+        res.should.be.status(200);
+        res.body.should.be.a('object');
+        res.body.should.have.property('nome').eql(_configEx.nome);            
+        res.body.should.have.property('valor').eql(_configEx.valor);            
+        done();
+    });
+}
+
+ConfigTst.PutOneRecord = (done) => {
+    _chai.request(_app)
+    .put( _url + '/' + _configEx.nome )
+    .send(_configExAlt)
+    .end((err, res) => {
+        res.should.be.status(201);
+
+        _chai.request(_app)
+        .get( _url + '/' + _configEx.nome + '/valor' )
+        .end((err, res) => {
+            res.should.be.status(200);
+            res.body.should.be.eql(_configExAlt.valor);
+            done();
+        });
+    });
+}
+
+
+ConfigTst.DeleteOneRecord = (done) => { 
+    let nome;
+
+    _chai.request(_app)
+    .get( _url + '/' + _configEx.nome )
+    .end((err, res) => {
+        res.should.be.status(200);
+        res.body.should.be.a('object');
+        nome = res.body.nome;
+
+        _chai.request(_app)
+        .delete( _url + '/' +nome )
+        .end((err, res) => {
+            res.should.be.status(200);
+            done();
+        });
+
+    });
+} 
 
 
 module.exports = ConfigTst;

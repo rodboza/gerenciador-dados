@@ -13,6 +13,13 @@ module.exports = function(app) {
     }
   }
 
+  
+  erros.sendErrorsDuplicateRecord = (res,valor) => {
+      let errors = [];
+      errors.push(`Erro ao incluir o registro! Valor "${valor}" duplicado`);
+      return res.status(400).json({ errors });
+  }
+
   erros.sendErrorsOrNext = (req, res, next) => {
     let bundle = res.locals.bundle;
 

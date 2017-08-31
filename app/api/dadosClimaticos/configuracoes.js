@@ -29,6 +29,23 @@ module.exports = function(app) {
     });
   }
   //FIM FUNCAO
+  
+  //INICIO FUNCAO
+  api.getName = function(req, res, next) {
+    configuracaoModelo
+      .findOne( 
+        {nome:req.params.nome} 
+        ,(err, configuracao) => {
+          if (err)
+            return app.erros.sendErrorsFromDB(res, err);
+          if (!configuracao)
+            return res.sendStatus(404);
+          req.configuracao = configuracao;
+          next();
+        }
+      );
+  }
+  //FIM FUNCAO
 
   //INICIO FUNCAO
   api.getAll = function(req, res, next) {
@@ -53,14 +70,23 @@ module.exports = function(app) {
     let config = new configuracaoModelo();
     config.nome = req.body.nome;
     config.valor = req.body.valor;
-    config.save()
-      .then(
-        (err) => {
-          if (err) 
-            return app.erros.sendErrorsFromDB(res, err);
-        }
-      );
-    return res.status(201).json(config);
+
+    configuracaoModelo
+      .findOne( 
+          {nome:config.nome} 
+          ,(err, configuracao) => {
+            if (err)
+              return app.erros.sendErrorsFromDB(res, err);
+            if (configuracao)
+              return app.erros.sendErrorsDuplicateRecord(res, configuracao.nome);
+            config
+              .save()
+              .then ( (err) => app.erros.sendErrorsFromDB(res, err) );
+            return res.status(201).json(config);
+          }
+      )
+      
+
   }
   //FIM FUNCAO
 
@@ -68,25 +94,19 @@ module.exports = function(app) {
   api.put = function(req, res, next) {
     let config = req.configuracao;
     config.valor = req.body.valor;
-    config.save(
-      (err) => {
-        if (err) 
-          return app.erros.sendErrorsFromDB(res, err);
-      }
-    );
-    return res.status(201).json(config);
-  }
+    config
+      .save()
+      .then( (err) => app.erros.sendErrorsFromDB(res, err));
+      return res.status(201).json(config);
+    }
   //FIM FUNCAO
 
   //INICIO FUNCAO
   api.delete = function(req, res, next) {
-    configuracaoModelo.remove(
-        {_id:req.configuracao._id}, 
-        (err, bear) => {
-            if (err)
-              return app.erros.sendErrorsFromDB(res, err);
-        }
-    );
+    configuracaoModelo
+      .remove({_id:req.configuracao._id})
+      .exec()
+      .then( (err) => app.erros.sendErrorsFromDB(res, err));
     return res.sendStatus(200);
   }
   //FIM FUNCAO

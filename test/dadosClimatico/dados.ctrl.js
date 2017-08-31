@@ -43,7 +43,7 @@ DadosTst.PostOneRecord = (done) => {
         });            
 }
 
-DadosTst.DoGetRecords = (done) => { 
+DadosTst.GetAllRecords = (done) => { 
     _chai.request(_app)
     .get( _url )
     .end((err, res) => {
@@ -68,25 +68,6 @@ DadosTst.GetLastRecord = (done) => {
     });
 }
 
-DadosTst.DeleteOneRecord = (done) => { 
-    let _id;
-
-    _chai.request(_app)
-    .get( _url + '/atual' )
-    .end((err, res) => {
-        res.should.be.status(200);
-        res.body.should.be.a('object');
-        _id = res.body._id;
-
-        _chai.request(_app)
-        .delete( _url + '/' +_id )
-        .end((err, res) => {
-            res.should.be.status(200);
-            done();
-        });
-
-    });
-} 
 
 DadosTst.PutOneRecord = (done) => {
     let _id;
@@ -119,6 +100,27 @@ DadosTst.PutOneRecord = (done) => {
     });
 
 }
+
+DadosTst.DeleteOneRecord = (done) => { 
+    let _id;
+
+    _chai.request(_app)
+    .get( _url + '/atual' )
+    .end((err, res) => {
+        res.should.be.status(200);
+        res.body.should.be.a('object');
+        _id = res.body._id;
+
+        _chai.request(_app)
+        .delete( _url + '/' +_id )
+        .end((err, res) => {
+            res.should.be.status(200);
+            done();
+        });
+
+    });
+} 
+
 
 
 module.exports = DadosTst;
