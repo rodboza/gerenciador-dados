@@ -5,9 +5,10 @@ module.exports = function(app) {
   let erros = {};
 
   erros.sendErrorsFromDB = (res, dbErrors) => {
-    if (dbErrors) {
+    if (dbErrors.errors) {
       let errors = [];
       _.forIn(dbErrors.errors, error => errors.push(error.message));
+      console.log(`erros: ${errors}`);
       return res.status(400).json({ errors });
     }
   }

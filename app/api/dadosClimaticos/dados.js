@@ -71,18 +71,19 @@ module.exports = function(app) {
 
   //INICIO FUNCAO
   api.put = function(req, res, next) {
-    let dados = req.dados;
-    dados.ocorrencia = req.body.ocorrencia || dados.ocorrencia
-    dados.temperatura = req.body.temperatura || dados.temperatura
-    dados.umidadeumidade = req.body.umidade || dados.umidadeumidade
-    dados.pressao = req.body.pressao || dados.pressao
-    dados.save()
+    let d = req.dados;
+    d.ocorrencia = req.body.ocorrencia || d.ocorrencia;
+    d.temperatura = req.body.temperatura || d.temperatura;
+    d.umidade = req.body.umidade || d.umidadeumidade;
+    d.pressao = req.body.pressao || d.pressao;
+    //dadosModelo.updateOne({_id:d._id}, {ocorrencia:d.ocorrencia, temperatura:d.temperatura, umidade:d.umidade, pressao:d.pressao})
+    d.save()
       .then( 
         (err) => {
             return app.erros.sendErrorsFromDB(res, err);
         }
       );
-    return res.status(201).json(dados);  }
+    return res.status(201).json(d);  }
   //FIM FUNCAO
 
   //INICIO FUNCAO

@@ -53,12 +53,13 @@ module.exports = function(app) {
     let config = new configuracaoModelo();
     config.nome = req.body.nome;
     config.valor = req.body.valor;
-    config.save(
-      (err) => {
-        if (err) 
-          return app.erros.sendErrorsFromDB(res, err);
-      }
-    );
+    config.save()
+      .then(
+        (err) => {
+          if (err) 
+            return app.erros.sendErrorsFromDB(res, err);
+        }
+      );
     return res.status(201).json(config);
   }
   //FIM FUNCAO
